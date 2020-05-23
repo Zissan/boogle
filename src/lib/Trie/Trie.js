@@ -15,7 +15,7 @@ const Trie = function () {
 };
 
 Trie.prototype.add = function (word, value) {
-  this.count++;
+  let isNew = false;
   let currentNode = null;
   for (let index = 0; index < word.length; index++) {
     const element = word[index];
@@ -23,12 +23,16 @@ Trie.prototype.add = function (word, value) {
       currentNode = this.root;
     }
     if (!currentNode.map[element]) {
+      isNew = true;
       currentNode.map[element] = new Node();
     }
     currentNode = currentNode.map[element];
     if (index === word.length - 1) {
       currentNode.addValue(value);
     }
+  }
+  if (isNew) {
+    this.count++;
   }
 };
 

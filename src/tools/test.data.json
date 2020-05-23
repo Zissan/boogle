@@ -1,0 +1,24 @@
+{
+  "titles": ["Anything You Want", "The Richest Man in Babylon"],
+  "queries": ["is your problems", "achieve take book"],
+  "summaries": [
+    {
+      "id": 0,
+      "summary": "The Book in Three Sentences: Practicing meditation and mindfulness"
+    },
+    {
+      "id": 1,
+      "summary": "The Book in Three Sentences: The 10X Rule"
+    }
+  ],
+  "authors": [
+    {
+      "book_id": 0,
+      "author": "Dan Harris"
+    },
+    {
+      "book_id": 1,
+      "author": "Grant Cardone"
+    }
+  ]
+}

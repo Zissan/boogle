@@ -1,11 +1,11 @@
 const Node = function () {
-  this.bucket = [];
+  this.bucket = {};
   this.map = {};
   this.addValue = (value) => {
-    this.bucket.push(value);
+    this.bucket[value] = true;
   };
   this.isEnd = () => {
-    return this.bucket.length > 0;
+    return Object.keys(this.bucket).length > 0;
   };
 };
 
@@ -49,7 +49,7 @@ Trie.prototype.getValues = function (word) {
     }
     currentNode = currentNode.map[element];
     if (index === word.length - 1) {
-      values = currentNode.bucket;
+      values = Object.keys(currentNode.bucket);
     }
   }
   return values;

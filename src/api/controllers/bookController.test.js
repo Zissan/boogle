@@ -35,7 +35,7 @@ describe("SUT: bookController", () => {
       //ASSERT
       const ids = controller.search("Practicing");
 
-      expect(ids[0]).toBe(1);
+      expect(ids[0]).toBe("1");
     });
 
     test("The word, 10X, should be mapped with the book name, The Richest Man in Babylon", function () {
@@ -43,6 +43,12 @@ describe("SUT: bookController", () => {
       const ids = controller.search("10X");
       const books = controller.get(ids);
       expect(books[0].name).toBe("The Richest Man in Babylon");
+    });
+
+    test("The word, The, should be mapped with Two ids.", function () {
+      //ASSERT
+      const ids = controller.search("The");
+      expect(ids.length).toBe(2);
     });
   });
 });

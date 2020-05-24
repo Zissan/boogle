@@ -1,7 +1,4 @@
-import React from "react";
+import { withAutomcomplete } from "./HOC/withAutocomplete";
+import TextInput from "ui-lib/TextInput";
 
-const Autocomplete = () => {
-  return <div>Autocomplete</div>;
-};
-
-export default Autocomplete;
+export default withAutomcomplete(TextInput);

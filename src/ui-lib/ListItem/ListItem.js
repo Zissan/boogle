@@ -1,7 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Card = ({ htmlId, onMouseEnter, onMouseLeave, onClick, ...props }) => {
+const ListItem = ({
+  htmlId,
+  onMouseEnter,
+  onMouseLeave,
+  onClick,
+  ...props
+}) => {
   return (
     <div
       className="autocomplete__result"
@@ -16,7 +22,7 @@ const Card = ({ htmlId, onMouseEnter, onMouseLeave, onClick, ...props }) => {
   );
 };
 
-Card.propTypes = {
+ListItem.propTypes = {
   /** Unique HTML ID. Handy hook for automated testing. */
   htmlId: PropTypes.string,
 
@@ -30,4 +36,4 @@ Card.propTypes = {
   children: PropTypes.node,
 };
 
-export default Card;
+export default ListItem;

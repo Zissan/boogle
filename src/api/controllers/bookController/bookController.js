@@ -22,7 +22,34 @@ const bookController = function () {
     return getValues(word);
   }
 
+  function searchSummary(summary) {
+    let referenceIds = {};
+    let commonIds = {};
+    const words = summary.split(/\s+/);
+
+    words.forEach((word) => {
+      const ids = search(word);
+      ids.forEach((id) => {
+        if (!referenceIds[id]) {
+          referenceIds[id] = [];
+        }
+        referenceIds[id].push(word);
+      });
+    });
+
+    Object.keys(referenceIds).forEach((id) => {
+      if (referenceIds[id].length === words.length) {
+        commonIds[id] = true;
+      }
+    });
+
+    return { books: getBooks(Object.keys(commonIds)) };
+  }
+
   function getBooks(ids) {
+    if (!ids) {
+      return Book.get();
+    }
     let books = [];
     for (const id of ids) {
       const book = Book.getById(id);
@@ -41,6 +68,7 @@ const bookController = function () {
     search,
     get: getBooks,
     wordsCount,
+    searchSummary,
   };
 };
 

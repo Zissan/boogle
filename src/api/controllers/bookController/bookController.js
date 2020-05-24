@@ -1,5 +1,6 @@
 import Book from "api/Models/book";
 import { add, getValues, count } from "api/Models/search";
+import { refineWord } from "./utils";
 
 const bookController = function () {
   function addBooks(data) {
@@ -12,14 +13,16 @@ const bookController = function () {
       );
       const id = Book.add(book);
       summaries[index].summary.split(/\s+/).forEach((word) => {
-        add(word, id);
+        add(refineWord(word), id);
       });
     }
     return { rows: Book.count() };
   }
 
   function search(word) {
-    return getValues(word);
+    word = JSON.parse(JSON.stringify(word));
+    word = word.replace(/[^a-zA-Z0-9]/g, "");
+    return getValues(refineWord(word));
   }
 
   function searchSummary(summary) {

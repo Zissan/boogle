@@ -210,6 +210,7 @@ export const withAutomcomplete = (Component) => {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 onClick={handleMouseClick}
+                classList={[`autocomplete__result`]}
               >
                 {renderItem(item)}
               </ListItem>

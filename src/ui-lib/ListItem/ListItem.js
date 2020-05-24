@@ -3,14 +3,15 @@ import PropTypes from "prop-types";
 
 const ListItem = ({
   htmlId,
-  onMouseEnter,
-  onMouseLeave,
-  onClick,
+  onMouseEnter = () => {},
+  onMouseLeave = () => {},
+  onClick = () => {},
+  classList = [],
   ...props
 }) => {
   return (
     <div
-      className="autocomplete__result"
+      className={classList.join(" ")}
       tabIndex="0"
       id={htmlId}
       onMouseEnter={onMouseEnter}
@@ -27,10 +28,16 @@ ListItem.propTypes = {
   htmlId: PropTypes.string,
 
   /** Function to call onChange */
-  onMouseEnter: PropTypes.func.isRequired,
+  onMouseEnter: PropTypes.func,
 
-  /** Function to call onChange */
-  onMouseLeave: PropTypes.func.isRequired,
+  /** Function to call onMouseLeave */
+  onMouseLeave: PropTypes.func,
+
+  /** Function to call onClick */
+  onClick: PropTypes.func,
+
+  /** Dynamic classes */
+  classList: PropTypes.arrayOf(PropTypes.string),
 
   /** Child component to display next to the input */
   children: PropTypes.node,

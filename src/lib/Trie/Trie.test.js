@@ -6,10 +6,6 @@ describe("SUT: TRIE", () => {
       db = new Trie();
     });
 
-    afterEach(() => {
-      db.clear();
-    });
-
     afterAll(() => {
       db = null;
     });
@@ -26,7 +22,40 @@ describe("SUT: TRIE", () => {
       const db = new Trie();
       const { count } = db;
       // ASSERT
-      expect(Object.keys(count).length).toBe(0);
+      expect(count).toBe(0);
+    });
+
+    describe("When three words, The, There, Their, are the added to the db instance", function () {
+      beforeAll(() => {
+        // ARRANGE
+        db.add("The", 1);
+        db.add("There", 2);
+        db.add("Their", 3);
+      });
+
+      it("Should return Three values on invoking the method, getAllValuesStartingWith, with the word, The.", () => {
+        // ACT
+        const values = db.getAllValuesStartingWith("The");
+
+        // ASSERT
+        expect(values.length).toBe(3);
+      });
+
+      it("Should return Zero values on invoking the method, getAllValuesStartingWith, with the word, Test.", () => {
+        // ACT
+        const values = db.getAllValuesStartingWith("Test");
+
+        // ASSERT
+        expect(values.length).toBe(0);
+      });
+
+      it("Should return One value on invoking the method, getValues, with the word, The.", () => {
+        // ACT
+        const values = db.getValues("The");
+
+        // ASSERT
+        expect(values.length).toBe(1);
+      });
     });
   });
 });

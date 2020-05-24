@@ -9,6 +9,10 @@ export const getValues = function (word) {
   return words.getValues(word);
 };
 
+export const getAllValuesStartingWith = function (word) {
+  return words.getAllValuesStartingWith(word);
+};
+
 export const count = function () {
   return words.count;
 };

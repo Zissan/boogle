@@ -1,5 +1,10 @@
 import Book from "api/Models/book";
-import { add, getValues, count } from "api/Models/search";
+import {
+  add,
+  getValues,
+  count,
+  getAllValuesStartingWith,
+} from "api/Models/search";
 import { refineWord } from "./utils";
 
 const bookController = function () {
@@ -20,28 +25,38 @@ const bookController = function () {
   }
 
   function search(word) {
-    word = JSON.parse(JSON.stringify(word));
-    word = word.replace(/[^a-zA-Z0-9]/g, "");
     return getValues(refineWord(word));
+  }
+
+  function searchWordStartWith(word) {
+    return getAllValuesStartingWith(refineWord(word));
   }
 
   function searchSummary(summary) {
     let referenceIds = {};
     let commonIds = {};
+    let emptyWordsCount = 0;
     const words = summary.split(/\s+/);
 
-    words.forEach((word) => {
-      const ids = search(word);
+    for (let index = 0; index < words.length; index++) {
+      const word = words[index];
+      if (!word) {
+        emptyWordsCount++;
+        continue;
+      }
+      // const ids = search(word);
+      const ids =
+        index < words.length - 1 ? search(word) : searchWordStartWith(word);
       ids.forEach((id) => {
         if (!referenceIds[id]) {
           referenceIds[id] = [];
         }
         referenceIds[id].push(word);
       });
-    });
+    }
 
     Object.keys(referenceIds).forEach((id) => {
-      if (referenceIds[id].length === words.length) {
+      if (referenceIds[id].length === words.length - emptyWordsCount) {
         commonIds[id] = true;
       }
     });
@@ -72,6 +87,7 @@ const bookController = function () {
     get: getBooks,
     wordsCount,
     searchSummary,
+    searchWordStartWith,
   };
 };
 

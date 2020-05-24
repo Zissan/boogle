@@ -1,4 +1,4 @@
-import { data1, data2 } from "tools/test.data.json";
+import { data1, data2 } from "tools/api.test.data.json";
 import bookController from "api/controllers/bookController";
 import Book from "api/Models/book";
 describe("SUT: bookController", () => {

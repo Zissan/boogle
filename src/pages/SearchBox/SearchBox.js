@@ -4,15 +4,17 @@ import Autocomplete from "ui-lib/Autocomplete";
 import Button from "ui-lib/Button";
 import bookController from "api/controllers/bookController/bookController";
 
-const SearchBox = () => {
+const SearchBox = ({ onSubmit }) => {
   const controller = useRef(bookController());
   const [value, setValue] = useState("");
   const [books, setBooks] = useState([]);
+  const [book, setBook] = useState(null);
   useEffect(() => {
     controller.current.add(data);
   }, []);
   const handleChange = ({ target }) => {
     setValue(target.value);
+    setBook(null);
     const { books } = controller.current.searchSummary(target.value);
     if (!books) return;
     setBooks(books);
@@ -20,8 +22,26 @@ const SearchBox = () => {
   const handleReady = useCallback((inputHtml) => {
     inputHtml.focus();
   }, []);
+
+  const handleSelect = (book) => {
+    setBook(book);
+    if (!book) return;
+    setValue(book.name);
+  };
+
+  const handleReset = () => {
+    setValue("");
+    setBook(null);
+    setBooks([]);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onSubmit(book);
+    handleReset();
+  };
   return (
-    <div>
+    <form onSubmit={handleSubmit} role="search">
       <Autocomplete
         items={books}
         value={value}
@@ -37,9 +57,14 @@ const SearchBox = () => {
           );
         }}
         onReady={handleReady}
+        onSelect={handleSelect}
+        classList={["searchBox__input"]}
+        noResultText="No Book Found"
+        reset={handleReset}
+        aria-label="search text"
       />
-      <Button />
-    </div>
+      <Button text={"Submit"} value="Search" />
+    </form>
   );
 };
 

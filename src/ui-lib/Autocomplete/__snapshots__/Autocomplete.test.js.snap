@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render results, with two ids, autocomplete-0, autocomplete-1, in the Snapshot. 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <span
+        class="autocomplete__clear__text"
+      >
+        X
+      </span>
+      <input
+        aria-autocomplete="list"
+        aria-expanded="true"
+        autocomplete="off"
+        id="txtAutocomplete"
+        name="txtAutocomplete"
+        role="combobox"
+        type="text"
+        value=""
+      />
+      <div
+        class="autocomplete__results"
+        tabindex="0"
+      >
+        <div
+          class="autocomplete__result"
+          id="autocomplete-0"
+          tabindex="0"
+        >
+          1
+        </div>
+        <div
+          class="autocomplete__result"
+          id="autocomplete-1"
+          tabindex="0"
+        >
+          2
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <span
+      class="autocomplete__clear__text"
+    >
+      X
+    </span>
+    <input
+      aria-autocomplete="list"
+      aria-expanded="true"
+      autocomplete="off"
+      id="txtAutocomplete"
+      name="txtAutocomplete"
+      role="combobox"
+      type="text"
+      value=""
+    />
+    <div
+      class="autocomplete__results"
+      tabindex="0"
+    >
+      <div
+        class="autocomplete__result"
+        id="autocomplete-0"
+        tabindex="0"
+      >
+        1
+      </div>
+      <div
+        class="autocomplete__result"
+        id="autocomplete-1"
+        tabindex="0"
+      >
+        2
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

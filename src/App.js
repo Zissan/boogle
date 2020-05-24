@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import SearchBox from "./pages/SearchBox";
-import SearchHistory from "./pages/SearchHistory";
+import SearchHistories from "./pages/SearchHistories";
 
 function App() {
+  const [books, setBooks] = useState([]);
+  const handleSubmit = (book) => {
+    if (!book) return;
+    setBooks([...books, book]);
+  };
   return (
     <div className="App">
-      <SearchBox />
-      <SearchHistory />
+      <SearchBox onSubmit={handleSubmit} />
+      <SearchHistories books={books} />
     </div>
   );
 }

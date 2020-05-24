@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { KEYS } from "./keys";
 import ListItem from "ui-lib/ListItem";
 import { getOffset, getIndexFromID } from "ui-lib/utils";
@@ -12,7 +12,7 @@ import { getOffset, getIndexFromID } from "ui-lib/utils";
 export const withAutomcomplete = (Component) => {
   return ({
     items = [],
-    renderItem,
+    renderItem = (item) => item,
     primaryKey,
     onReady = (htmlInput, htmlDiv) => {},
     onSelect = (item) => {},
@@ -60,7 +60,10 @@ export const withAutomcomplete = (Component) => {
         }
         currentChildrenIndex.current = 0;
       }
+      setOpen(items.length ? true : false);
     }, [items]);
+
+    const [open, setOpen] = useState(false);
 
     /**
      * COMMON EVENTS FOR MOUSE AND KEYBOARD EVENTS STARTS HERE
@@ -71,6 +74,7 @@ export const withAutomcomplete = (Component) => {
       if (!resultsRef.current.classList.contains("hide")) {
         resultsRef.current.classList.add("hide");
       }
+      setOpen(false);
     };
 
     const handleInputFocus = (event) => {
@@ -80,6 +84,7 @@ export const withAutomcomplete = (Component) => {
       if (resultsRef.current.classList.contains("hide")) {
         resultsRef.current.classList.remove("hide");
       }
+      setOpen(true);
     };
 
     const handleSelect = (index) => {
@@ -89,6 +94,7 @@ export const withAutomcomplete = (Component) => {
       if (!resultsRef.current.classList.contains("hide")) {
         resultsRef.current.classList.add("hide");
       }
+      setOpen(false);
     };
     /**
      * COMMON EVENTS FOR MOUSE AND KEYBOARD EVENTS ENDS HERE
@@ -199,12 +205,21 @@ export const withAutomcomplete = (Component) => {
         <span className="autocomplete__clear__text" onClick={reset}>
           X
         </span>
-        <Component {...props} forwardRef={inputRef} />
+        <Component
+          {...props}
+          {...{
+            role: "combobox",
+            "aria-autocomplete": "list",
+            "aria-expanded": open,
+            autoComplete: "off",
+          }}
+          forwardRef={inputRef}
+        />
         <div className="autocomplete__results" ref={resultsRef} tabIndex="0">
           {items.map((item, index) => {
             return (
               <ListItem
-                key={item[primaryKey]}
+                key={primaryKey ? item[primaryKey] : index}
                 {...item}
                 htmlId={`${itemIdPrefix}${index}`}
                 onMouseEnter={handleMouseEnter}

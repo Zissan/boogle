@@ -20,7 +20,7 @@ const SearchHistory = ({ name, summary, author, _id }) => {
         id={`history__block__${_id}__${Date.now()}--summary`}
         className={`history__block--summary`}
       >
-        {summary}
+        {`${summary.slice(0, 149)} ...`}
       </p>
       <hr />
       <p aria-label={`author ${author}`} className={`history__block--author`}>

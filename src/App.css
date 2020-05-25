@@ -1,0 +1,59 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-size: 1em;
+}
+
+input,
+.btn {
+  border: 1px solid #dedede;
+  padding: 10px;
+  background: #ffffff;
+  margin: 0 2px;
+}
+
+input:focus {
+  border: 1px solid rgb(66, 66, 223);
+}
+
+input[type="text"] {
+  width: 100%;
+}
+
+.App {
+  padding: 0;
+  text-align: center;
+}
+
+.form {
+  margin: 10px auto;
+}
+
+.history__block {
+  -webkit-box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.3);
+  padding: 10px 2px;
+  border-radius: 2px;
+}
+
+.grid__no_item_message {
+  color: #cecece;
+  margin: 10px auto;
+}
+
+@media screen and (min-width: 768px) {
+  .App {
+    padding: 2%;
+  }
+}

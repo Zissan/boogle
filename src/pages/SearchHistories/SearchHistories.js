@@ -6,7 +6,9 @@ const SearchHistories = ({ books }) => {
   return (
     <Grid
       items={books}
-      noItemsMessage={"No Books Selected"}
+      noItemsMessage={() => (
+        <div className="grid__no_item_message">No Books Selected</div>
+      )}
       setKey={(item) => {
         return `cell-${item._id}-${Date.now()}`;
       }}

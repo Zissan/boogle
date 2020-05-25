@@ -7,10 +7,12 @@ function App() {
   const [books, setBooks] = useState([]);
   const handleSubmit = (book) => {
     if (!book) return;
-    setBooks([...books, book]);
+    const newBooks = [...books, book];
+    setBooks([...newBooks]);
   };
   return (
     <div className="App">
+      <h1>Search Books</h1>
       <SearchBox onSubmit={handleSubmit} />
       <SearchHistories books={books} />
     </div>

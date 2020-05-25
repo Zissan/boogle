@@ -2,6 +2,13 @@
   display: none;
 }
 
+.autocomplete {
+  position: relative;
+  display: inline-block;
+  width: 40%;
+  margin: 0 auto;
+}
+
 .autocomplete__results {
   position: absolute;
   max-height: 300px;
@@ -17,14 +24,14 @@
 .autocomplete__result {
   font-size: 1rem;
   color: #333;
-  border-bottom: 1px solid #ddd;
+  padding: 10px;
 }
 
 .autocomplete__result:hover {
   cursor: pointer;
 }
 .autocomplete__result.active {
-  background-color: #fffcbc;
+  background-color: #dedede;
 }
 
 .autocomplete__no__results {
@@ -46,7 +53,7 @@
 .autocomplete__clear__text {
   position: absolute;
   z-index: 999;
-  right: 0;
-  top: 9px;
+  right: 6px;
+  top: 6px;
   cursor: pointer;
 }

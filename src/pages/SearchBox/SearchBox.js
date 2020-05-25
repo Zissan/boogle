@@ -41,29 +41,22 @@ const SearchBox = ({ onSubmit }) => {
     handleReset();
   };
   return (
-    <form onSubmit={handleSubmit} role="search">
+    <form onSubmit={handleSubmit} role="search" className="form">
       <Autocomplete
         items={books}
         value={value}
         primaryKey={"_id"}
         onChange={handleChange}
         renderItem={(book) => {
-          return (
-            <>
-              <label>
-                <strong>{book.name}</strong>
-              </label>
-            </>
-          );
+          return <>{book.name}</>;
         }}
         onReady={handleReady}
         onSelect={handleSelect}
-        classList={["searchBox__input"]}
         noResultText="No Book Found"
         reset={handleReset}
         aria-label="search text"
       />
-      <Button text={"Submit"} value="Search" />
+      <Button text={"Submit"} value="Search" classList={["btn"]} />
     </form>
   );
 };

@@ -104,6 +104,8 @@ export const withAutomcomplete = (Component) => {
      * KEYBOARD EVENTS HANDLING STARTS FROM HERE
      */
     const handleResultsKeydown = (event) => {
+      /** PREVENTING THE SUBMISSION OF THE FORM WRAPPING AROUND THE CONTROL.  */
+      event.preventDefault();
       const { children } = resultsRef.current;
       const count = children.length;
       const key = event.key.toUpperCase();
@@ -201,7 +203,7 @@ export const withAutomcomplete = (Component) => {
      */
 
     return (
-      <>
+      <div className="autocomplete">
         <span className="autocomplete__clear__text" onClick={reset}>
           X
         </span>
@@ -235,7 +237,7 @@ export const withAutomcomplete = (Component) => {
             <div className="autocomplete__no__results">{noResultText}</div>
           ) : null}
         </div>
-      </>
+      </div>
     );
   };
 };

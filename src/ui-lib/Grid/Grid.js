@@ -6,18 +6,29 @@ const Grid = ({
   items = [],
   renderItem = (item) => item,
   setKey = (item, index) => index,
-  noItemsMessage = "No items.",
+  noItemsMessage = () => "No items.",
 }) => {
   return (
     <>
       <div className={"row"} role="grid">
         {items.map((item, idx, arr) => {
           let desktopCellSize = 4;
-          if ((idx === arr.length - 3 && idx % 3 === 0) || arr.length === 2) {
+          if (
+            (arr.length > 3 && idx === arr.length - 1 && idx % 3 === 0) ||
+            arr.length === 1
+          ) {
+            desktopCellSize = 12;
+          }
+
+          if (
+            (arr.length > 3 && idx === arr.length - 1 && idx % 3 === 2) ||
+            arr.length === 2
+          ) {
             desktopCellSize = 6;
           }
-          if ((idx === arr.length - 2 && idx % 3 === 0) || arr.length === 1) {
-            desktopCellSize = 12;
+
+          if (arr.length > 3 && idx === arr.length - 2 && idx % 3 === 0) {
+            desktopCellSize = 6;
           }
           return (
             <Cell
@@ -29,7 +40,7 @@ const Grid = ({
           );
         })}
       </div>
-      {items.length ? null : <div role="alert">{noItemsMessage}</div>}
+      {items.length ? null : <div role="alert">{noItemsMessage()}</div>}
     </>
   );
 };
@@ -39,8 +50,10 @@ Grid.propTypes = {
   items: PropTypes.array,
   /** Describes the way how you render a cell */
   renderItem: PropTypes.func,
-  /**  */
-  noItemsMessage: PropTypes.string,
+  /** Simplifies to displays the no items message . */
+  noItemsMessage: PropTypes.func,
+  /** Exposing api to set the key of an item by the user. */
+  setKey: PropTypes.func,
 };
 
 export default Grid;

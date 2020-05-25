@@ -32,7 +32,7 @@ const bookController = function () {
     return getAllValuesStartingWith(refineWord(word));
   }
 
-  function searchSummary(summary) {
+  function searchSummary(summary, limit = 10) {
     let referenceIds = {};
     let commonIds = {};
     let emptyWordsCount = 0;
@@ -61,7 +61,7 @@ const bookController = function () {
       }
     });
 
-    return { books: getBooks(Object.keys(commonIds)) };
+    return { books: getBooks(Object.keys(commonIds).slice(0, limit)) };
   }
 
   function getBooks(ids) {

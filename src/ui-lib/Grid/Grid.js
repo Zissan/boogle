@@ -21,7 +21,7 @@ const Grid = ({
           }
 
           if (
-            (arr.length > 3 && idx === arr.length - 1 && idx % 3 === 2) ||
+            (arr.length > 3 && idx === arr.length - 1 && idx % 3 === 1) ||
             arr.length === 2
           ) {
             desktopCellSize = 6;
